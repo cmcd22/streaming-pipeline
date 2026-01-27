@@ -85,9 +85,9 @@ silver_df = (
         col("user_id"),
         col("driver_id"),
         col("city"),
-        col("payload.fare"),
-        col("payload.duration_seconds"),
-        col("payload.distance_km"),
+        col("payload.fare").cast("double").alias("fare"),
+        col("payload.duration_seconds").cast("int").alias("duration_seconds"),
+        col("payload.distance_km").cast("double").alias("distance_km"),
         to_date(col("event_ts")).alias("event_date"),
         current_timestamp().alias("processed_time")
     )
